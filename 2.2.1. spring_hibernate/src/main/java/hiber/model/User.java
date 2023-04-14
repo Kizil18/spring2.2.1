@@ -1,6 +1,5 @@
 package hiber.model;
 
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -21,8 +20,8 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "user",
-        cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id")
     private Car car;
 
     public User() {
@@ -72,7 +71,6 @@ public class User {
 
     public void setCar(Car car) {
         this.car = car;
-        car.setUser(this);
     }
 
     @Override
